@@ -12,6 +12,8 @@ var mongodb = require('./Config/mongodb.config');
 var indexRouter = require('./routes/index.routes');
 var usersRouter = require('./routes/users.routes');
 var expenseRouter = require('./routes/expenses.routes');
+const expenseDataVis = require('./routes/expense-data-vis.routes');
+
 var corsOptions = {
   origin: "http://localhost:8080"
 };
@@ -34,8 +36,8 @@ app.use(cors(corsOptions));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
 app.use('/expenses', expenseRouter);
+app.use('/expenseDataVis', expenseDataVis)
 
 //Connection to mongodb
 // mongodb.client.connect(err => {

@@ -30,13 +30,14 @@ router.get('/getExpenses', function(req, res) {
 
 router.post('/addExpense', function(req, res) {
 
-  console.log(req.body, req.body.Amount)
+  console.log(req.body, req.body.Date)
   const expenseListing = {
     Name: req.body.Name,
-    Date: req.body.Date,
+    Date: new Date(req.body.Date),
     Type: req.body.Type,
     Description: req.body.Description,
     Amount: req.body.Amount,
+    Category: req.body.Category
   }
 
   const dbConnect = dbo.getDb();
@@ -61,10 +62,11 @@ router.post('/updateExpense', function(req, res) {
       {
         $set: {
           Name: req.body.Name,
-          Date: req.body.Date,
+          Date: new Date(req.body.Date),
           Type: req.body.Type,
           Description: req.body.Description,
-          Amount: req.body.Amount
+          Amount: req.body.Amount,
+          Category: req.body.Category
         }
       },
       function(err, result) {
